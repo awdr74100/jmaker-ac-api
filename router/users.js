@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
   try {
     const user = await User.findById(id);
     if (user) {
-      res.status(409).send({ success: false, message: '重複註冊' });
+      res.status(409).send({ success: false, message: '重複加入' });
       return;
     }
     await User.create({ _id: id });
@@ -23,10 +23,10 @@ router.get('/:id/auth', async (req, res) => {
   try {
     const user = await User.findById(id);
     if (!user) {
-      res.status(401).send({ success: false, message: '尚未註冊' });
+      res.status(401).send({ success: false, message: '尚未加入' });
       return;
     }
-    if (!user.approvalAt) {
+    if (!user.registerAt) {
       res.status(403).send({ success: false, message: '未完成實體用戶註冊' });
       return;
     }
@@ -88,7 +88,7 @@ router.patch('/:id', async (req, res) => {
     await User.findByIdAndUpdate(id, {
       userName,
       userNumber,
-      approvalAt: Date.now(),
+      registerAt: Date.now(),
     });
     res.status(200).send({ success: true, message: '成功註冊' });
   } catch (error) {

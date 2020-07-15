@@ -3,11 +3,11 @@ POST http://localhost:3000/api/v2/users
 Content-Type: application/json
 
 {
-  "id": "003"
+  "id": "002"
 }
 
 ### 權限檢查
-GET http://localhost:3000/api/v2/users/001/auth
+GET http://localhost:3000/api/v2/users/002/auth
 
 ### 取得所有用戶
 GET http://localhost:3000/api/v2/users
@@ -19,7 +19,7 @@ GET http://localhost:3000/api/v2/users/4A6G0068
 DELETE http://localhost:3000/api/v2/users/003
 
 ### 實體用戶註冊
-PATCH http://localhost:3000/api/v2/users/001
+PATCH http://localhost:3000/api/v2/users/002
 Content-Type: application/json
 
 {
@@ -28,9 +28,9 @@ Content-Type: application/json
 }
 
 ### 調整訪問權限
-PATCH http://localhost:3000/api/v2/users/001/auth
+PATCH http://localhost:3000/api/v2/users/002/auth
 Content-Type: application/json
 
 {
-  "auth": false
+  "auth": true
 }
