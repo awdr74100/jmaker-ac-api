@@ -32,6 +32,7 @@
 - 前台 - 實體用戶註冊 => PATCH /api/v2/users/:id
 
   - 成功註冊 (200)
+  - 重複註冊 (409)
   - 存在異常 (500)
 
 - 前台 - 調整訪問權限 => PATCH /api/v2/users/:id/auth

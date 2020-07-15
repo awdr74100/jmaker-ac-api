@@ -85,6 +85,13 @@ router.patch('/:id', async (req, res) => {
   const { id } = req.params;
   const { userName, userNumber } = req.body;
   try {
+    const user = await User.findOne({
+      userNumber,
+    });
+    if (user) {
+      res.status(409).send({ success: false, message: '重複註冊' });
+      return;
+    }
     await User.findByIdAndUpdate(id, {
       userName,
       userNumber,

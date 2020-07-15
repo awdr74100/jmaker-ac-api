@@ -23,8 +23,8 @@ PATCH http://localhost:3000/api/v2/users/002
 Content-Type: application/json
 
 {
-  "userName": "藍奕濡",
-  "userNumber": "4A6G0068"
+  "userName": "洪翊銓",
+  "userNumber": "4A6G0067"
 }
 
 ### 調整訪問權限
@@ -32,5 +32,5 @@ PATCH http://localhost:3000/api/v2/users/002/auth
 Content-Type: application/json
 
 {
-  "auth": true
+  "auth": false
 }
