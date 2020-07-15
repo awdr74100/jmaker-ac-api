@@ -1,0 +1,36 @@
+### 用戶註冊
+POST http://localhost:3000/api/v2/users
+Content-Type: application/json
+
+{
+  "id": "003"
+}
+
+### 權限檢查
+GET http://localhost:3000/api/v2/users/001/auth
+
+### 取得所有用戶
+GET http://localhost:3000/api/v2/users
+
+### 取得指定用戶
+GET http://localhost:3000/api/v2/users/4A6G0068
+
+### 刪除指定用戶
+DELETE http://localhost:3000/api/v2/users/003
+
+### 實體用戶註冊
+PATCH http://localhost:3000/api/v2/users/001
+Content-Type: application/json
+
+{
+  "userName": "藍奕濡",
+  "userNumber": "4A6G0068"
+}
+
+### 調整訪問權限
+PATCH http://localhost:3000/api/v2/users/001/auth
+Content-Type: application/json
+
+{
+  "auth": false
+}

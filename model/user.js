@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
   },
   auth: {
     type: Boolean,
-    default: false,
+    default: true,
   },
-  approvalAt: {
+  registerAt: {
     type: Date,
     default: null,
   },
