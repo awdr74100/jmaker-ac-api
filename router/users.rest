@@ -1,9 +1,0 @@
-GET http://localhost:3000/api/v2/users
-
-###
-POST http://localhost:3000/api/v2/users
-Content-Type: application/json
-
-{
-  "uid":"5w4eg48e152wf"
-}

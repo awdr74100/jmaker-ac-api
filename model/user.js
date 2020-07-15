@@ -7,19 +7,19 @@ const userSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    default: 'unknown',
+    default: null,
   },
   userNumber: {
     type: String,
-    default: 'unknown',
+    default: null,
   },
   auth: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   approvalAt: {
     type: Date,
-    default: Date.now,
+    default: null,
   },
   createdAt: {
     type: Date,
