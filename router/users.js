@@ -5,14 +5,13 @@ const User = require('../model/user');
 router.post('/', async (req, res) => {
   const { id } = req.body;
   try {
-    const user = await User.findById(id);
-    if (user) {
-      res.status(409).send({ success: false, message: '重複加入' });
+    await User.create({ _id: id });
+    res.send({ success: true, message: '成功加入' });
+  } catch (error) {
+    if (error.code === 11000) {
+      res.send({ success: false, message: '重複加入' });
       return;
     }
-    await User.create({ _id: id });
-    res.status(201).send({ success: true, message: '成功加入' });
-  } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
@@ -23,18 +22,18 @@ router.get('/:id/auth', async (req, res) => {
   try {
     const user = await User.findById(id);
     if (!user) {
-      res.status(401).send({ success: false, message: '尚未加入' });
+      res.send({ success: false, message: '尚未加入' });
       return;
     }
     if (!user.registerAt) {
-      res.status(403).send({ success: false, message: '未完成實體用戶註冊' });
+      res.send({ success: false, message: '未完成實體用戶註冊' });
       return;
     }
     if (!user.auth) {
-      res.status(403).send({ success: false, message: '權限遭移除' });
+      res.send({ success: false, message: '權限遭移除' });
       return;
     }
-    res.status(200).send({ success: true, message: '成功進入' });
+    res.send({ success: true, message: '成功進入' });
   } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
@@ -44,7 +43,7 @@ router.get('/:id/auth', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).send({
+    res.send({
       success: true,
       users,
     });
@@ -60,7 +59,7 @@ router.get('/:userNumber', async (req, res) => {
     const user = await User.findOne({
       userNumber,
     });
-    res.status(200).send({
+    res.send({
       success: true,
       user,
     });
@@ -74,7 +73,7 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     await User.findByIdAndDelete(id);
-    res.status(200).send({ success: '成功刪除' });
+    res.send({ success: true, message: '成功刪除' });
   } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
@@ -89,7 +88,7 @@ router.patch('/:id', async (req, res) => {
       userNumber,
     });
     if (user) {
-      res.status(409).send({ success: false, message: '重複註冊' });
+      res.send({ success: false, message: '重複註冊' });
       return;
     }
     await User.findByIdAndUpdate(id, {
@@ -97,7 +96,7 @@ router.patch('/:id', async (req, res) => {
       userNumber,
       registerAt: Date.now(),
     });
-    res.status(200).send({ success: true, message: '成功註冊' });
+    res.send({ success: true, message: '成功註冊' });
   } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
@@ -111,7 +110,7 @@ router.patch('/:id/auth', async (req, res) => {
     await User.findByIdAndUpdate(id, {
       auth,
     });
-    res.status(200).send({ success: true, message: '成功調整' });
+    res.send({ success: true, message: '成功調整' });
   } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
