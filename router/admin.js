@@ -38,8 +38,8 @@ router.post('/login', async (req, res) => {
       res.send({ success: false, message: '帳號或密碼錯誤' });
       return;
     }
-    const token = jwt.sign({ id: admin.id }, `${process.env.JWT_SECRET}`, { expiresIn: 5 });
-    res.cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 });
+    const token = jwt.sign({ id: admin.id }, `${process.env.JWT_SECRET}`, { expiresIn: 60 * 15 });
+    res.cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 15 });
     res.send({ success: true, message: '登入成功' });
   } catch (error) {
     res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
@@ -47,13 +47,22 @@ router.post('/login', async (req, res) => {
 });
 
 // 前台 - 檢查是否持續登入
-router.post('/check', async (req, res) => {
-  res.send(req.user);
+router.post('/check', (req, res) => {
+  const exp = new Date(req.user.exp * 1000).getMinutes();
+  const now = new Date().getMinutes();
+  let interval = exp - now;
+  if (exp - now < 0) interval = 60 + (exp - now);
+  if (interval < 10) {
+    const token = jwt.sign({ id: req.user.id }, `${process.env.JWT_SECRET}`, { expiresIn: 60 * 15 });
+    res.cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 15 });
+  }
+  res.send({ success: true });
 });
 
-router.get('/', async (req, res) => {
-  const admins = await Admin.find();
-  res.send(admins);
+// 前台 -管理員登出
+router.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.send({ success: true, message: '登出成功' });
 });
 
 module.exports = router;

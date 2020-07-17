@@ -29,10 +29,11 @@ app.use(
     },
   }).unless({
     path: [
-      /^\/*/,
-      // { url: /^\/api\/v2\/users$/, methods: ['POST'] },
-      // { url: /^\/api\/v2\/users\/([^/]*)\/auth$/, methods: ['GET'] },
-      // { url: /^\/api\/v2\/admin\/login$/, methods: ['POST'] },
+      // /^\/*/,
+      { url: /^\/api\/v2\/users$/, methods: ['POST'] },
+      { url: /^\/api\/v2\/users\/([^/]*)\/auth$/, methods: ['GET'] },
+      { url: /^\/api\/v2\/admin\/login$/, methods: ['POST'] },
+      // { url: /^\/api\/v2\/admin$/, methods: ['POST'] },
     ],
   })
 );
@@ -41,9 +42,9 @@ app.use(
 const usersRouter = require('./router/users');
 const adminRouter = require('./router/admin');
 
-const path = '/api/v2';
-app.use(`${path}/users`, usersRouter);
-app.use(`${path}/admin`, adminRouter);
+const root = '/api/v2';
+app.use(`${root}/users`, usersRouter);
+app.use(`${root}/admin`, adminRouter);
 
 // mongoose connection
 mongoose.connect(process.env.MONGODB_URL, {

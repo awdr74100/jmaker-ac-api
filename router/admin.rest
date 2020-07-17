@@ -1,5 +1,5 @@
 ### 管理員註冊
-POST http://localhost:3000/api/v2/admin/
+POST http://localhost:3000/api/v2/admin
 Content-Type: application/json
 
 {
@@ -16,6 +16,8 @@ Content-Type: application/json
   "password": "jmaker00643"
 }
 
-###
+### 檢查是否持續登入
+POST http://localhost:3000/api/v2/admin/check
 
-GET http://localhost:3000/api/v2/admin
+### 管理員登出
+POST http://localhost:3000/api/v2/admin/logout
