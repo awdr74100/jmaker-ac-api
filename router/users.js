@@ -1,108 +1,96 @@
 const router = require('express').Router();
 const User = require('../model/user');
 
-// 硬體 - 加入用戶
+// 硬體 && 用戶加入
 router.post('/', async (req, res) => {
   const { id } = req.body;
   try {
     await User.create({ _id: id });
-    res.send({ success: true, message: '成功加入' });
+    return res.send({ success: true, message: '加入成功' });
   } catch (error) {
-    if (error.code === 11000) {
-      res.send({ success: false, message: '重複加入' });
-      return;
-    }
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    if (error.code === 11000) return res.send({ success: false, message: '重複加入' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 硬體 - 權限檢查
+// 硬體 && 權限檢查
 router.get('/:id/auth', async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findById(id);
-    if (!user) {
-      res.send({ success: false, message: '尚未加入' });
-      return;
-    }
-    if (!user.registerAt) {
-      res.send({ success: false, message: '未完成實體用戶註冊' });
-      return;
-    }
-    if (!user.auth) {
-      res.send({ success: false, message: '權限遭移除' });
-      return;
-    }
-    res.send({ success: true, message: '成功進入' });
+    if (!user) return res.send({ success: false, message: '用戶尚未加入' });
+    if (!user.register_at) return res.send({ success: false, message: '用戶尚未完成實體註冊' });
+    if (!user.auth) return res.send({ success: false, message: '用戶權限遭移除' });
+    return res.send({
+      success: true,
+      user: { username: user.username, userid: user.userid },
+    });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 前台 - 取得所有用戶
+// 前台 && 取得所有用戶
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
-    res.send({
+    return res.send({
       success: true,
       users,
     });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 前台 - 取得指定用戶
-router.get('/:userNumber', async (req, res) => {
-  const { userNumber } = req.params;
+// 前台 && 取得指定用戶
+router.get('/:userid', async (req, res) => {
+  const { userid } = req.params;
   try {
     const user = await User.findOne({
-      userNumber,
+      userid,
     });
-    res.send({
+    return res.send({
       success: true,
       user,
     });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 前台 - 刪除指定用戶
+// 前台 && 刪除指定用戶
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     await User.findByIdAndDelete(id);
-    res.send({ success: true, message: '成功刪除' });
+    return res.send({ success: true, message: '刪除成功' });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 前台 - 實體用戶註冊
+// 前台 && 實體用戶註冊
 router.patch('/:id', async (req, res) => {
   const { id } = req.params;
-  const { userName, userNumber } = req.body;
+  const { username, userid } = req.body;
   try {
     const user = await User.findOne({
-      userNumber,
+      userid,
     });
-    if (user) {
-      res.send({ success: false, message: '重複註冊' });
-      return;
-    }
+    if (user) return res.send({ success: false, message: '重複註冊' });
     await User.findByIdAndUpdate(id, {
-      userName,
-      userNumber,
-      registerAt: Date.now(),
+      username,
+      userid,
+      register_at: Date.now(),
     });
-    res.send({ success: true, message: '成功註冊' });
+    return res.send({ success: true, message: '註冊成功' });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 
-// 前台 - 調整訪問權限
+// 前台 && 調整訪問權限
 router.patch('/:id/auth', async (req, res) => {
   const { id } = req.params;
   const { auth } = req.body;
@@ -110,9 +98,9 @@ router.patch('/:id/auth', async (req, res) => {
     await User.findByIdAndUpdate(id, {
       auth,
     });
-    res.send({ success: true, message: '成功調整' });
+    return res.send({ success: true, message: '調整成功' });
   } catch (error) {
-    res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
 });
 

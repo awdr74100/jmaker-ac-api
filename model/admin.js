@@ -10,6 +10,10 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nickname: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Admin', adminSchema);

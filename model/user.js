@@ -5,11 +5,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userName: {
+  username: {
     type: String,
     default: null,
   },
-  userNumber: {
+  userid: {
     type: String,
     default: null,
   },
@@ -17,11 +17,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  registerAt: {
+  register_at: {
     type: Date,
     default: null,
   },
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now,
   },

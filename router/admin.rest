@@ -1,13 +1,14 @@
-### 管理員註冊
-POST http://localhost:3000/api/v2/admin
+### 前台 && 管理員註冊
+POST http://localhost:3000/api/v2/admin/signup
 Content-Type: application/json
 
 {
   "email": "root@gmail.com",
-  "password": "jmaker00643"
+  "password": "jmaker00643",
+  "nickname": "root"
 }
 
-### 管理員登入
+### 前台 && 管理員登入
 POST http://localhost:3000/api/v2/admin/login
 Content-Type: application/json
 
@@ -16,8 +17,8 @@ Content-Type: application/json
   "password": "jmaker00643"
 }
 
-### 檢查是否持續登入
+### 前台 && 檢查是否持續登入
 POST http://localhost:3000/api/v2/admin/check
 
-### 管理員登出
+### 前台 && 管理員登出
 POST http://localhost:3000/api/v2/admin/logout

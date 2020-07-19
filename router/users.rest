@@ -1,36 +1,36 @@
-### 用戶註冊
+### 硬體 && 加入用戶
 POST http://localhost:3000/api/v2/users
 Content-Type: application/json
 
 {
-  "id": "002"
+  "id": "001"
 }
 
-### 權限檢查
+### 硬體 && 權限檢查
 GET http://localhost:3000/api/v2/users/001/auth
 
-### 取得所有用戶
+### 前台 && 取得所有用戶
 GET http://localhost:3000/api/v2/users
 
-### 取得指定用戶
-GET http://localhost:3000/api/v2/users/4A6G0068
+### 前台 && 取得指定用戶
+GET http://localhost:3000/api/v2/users/4A6G0067
 
-### 刪除指定用戶
+### 前台 && 刪除指定用戶
 DELETE http://localhost:3000/api/v2/users/002
 
-### 實體用戶註冊
+### 前台 && 實體用戶註冊
 PATCH http://localhost:3000/api/v2/users/002
 Content-Type: application/json
 
 {
-  "userName": "藍奕濡",
-  "userNumber": "4A6G0068"
+  "username": "弘毅全",
+  "userid": "4A6G0067"
 }
 
-### 調整訪問權限
-PATCH http://localhost:3000/api/v2/users/001/auth
+### 前台 && 調整訪問權限
+PATCH http://localhost:3000/api/v2/users/002/auth
 Content-Type: application/json
 
 {
-  "auth": true
+  "auth": false
 }
