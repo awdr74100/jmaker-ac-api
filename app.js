@@ -39,13 +39,13 @@ app.use(expressJwt(expressJwtOptions).unless(expressJwtUnless));
 const usersRouter = require('./router/users');
 const adminRouter = require('./router/admin');
 const uploadRouter = require('./router/upload');
-// const mailRouter = require('./router/mail');
+const mailRouter = require('./router/mail');
 
 const root = '/api/v2';
 app.use(`${root}/users`, usersRouter);
 app.use(`${root}/admin`, adminRouter);
 app.use(`${root}/upload`, uploadRouter);
-// app.use(`${root}/mail`, mailRouter);
+app.use(`${root}/mail`, mailRouter);
 
 // mongoose connection
 mongoose.connect(process.env.MONGODB_URL, {

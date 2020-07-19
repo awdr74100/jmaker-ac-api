@@ -1,0 +1,11 @@
+### 前台 && 發送郵件
+POST http://localhost:3000/api/v2/mail
+Content-Type: application/json
+
+{
+  "nickname": "root",
+  "email": "a78945612385238@gmail.com",
+  "subject": "同學你垃圾亂丟，已遭禁權",
+  "imgUrl": "https://i.imgur.com/uTORkdR.png",
+  "content": "如果要恢復權限，請來 J004 找我"
+}

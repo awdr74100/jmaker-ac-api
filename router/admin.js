@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ id: admin.id }, `${process.env.JWT_SECRET}`, { expiresIn: 60 * 15 });
     return res
       .cookie('token', token, { httpOnly: true, maxAge: 1000 * 60 * 15 })
-      .send({ success: true, message: '登入成功' });
+      .send({ success: true, admin: { email: admin.email, nickname: admin.nickname } });
   } catch (error) {
     return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
   }
