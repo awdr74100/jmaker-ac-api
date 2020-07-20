@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [{ "src": "./app.js", "use": "@now/node" }],
+  "routes": [
+    {
+      "src": "/api/v2/users",
+      "dest": "/app.js"
+    },
+    {
+      "src": "/api/v2/users/(.*)",
+      "dest": "/app.js"
+    },
+    {
+      "src": "/api/v2/admin/(.*)",
+      "dest": "/app.js"
+    },
+    {
+      "src": "/api/v2/mail",
+      "dest": "/app.js"
+    },
+    {
+      "src": "/api/v2/upload",
+      "dest": "/app.js"
+    }
+  ]
+}

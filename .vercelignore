@@ -1,0 +1,7 @@
+/router/*.rest
+.editorconfig
+.prettierrc
+*.md
+/node_modules
+.eslintrc.js
+.env
