@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:3001'],
+  origin: ['http://localhost:3001', 'https://jmaker.netlify.app'],
 };
 
 const expressJwtOptions = {
@@ -26,7 +26,6 @@ const expressJwtUnless = {
     { url: /^\/api\/v2\/users$/, methods: ['POST'] },
     { url: /^\/api\/v2\/users\/([^/]*)\/auth$/, methods: ['GET'] },
     { url: /^\/api\/v2\/admin\/login$/, methods: ['POST'] },
-    { url: /^\/api\/v2\/admin\/logout$/, methods: ['POST'] },
   ],
 };
 
