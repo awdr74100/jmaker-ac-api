@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
     return res.send({ success: true, message: '註冊成功' });
   } catch (error) {
     if (error.code === 11000) return res.send({ success: false, message: '重複註冊' });
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
       })
       .send({ success: true, admin: { email: admin.email, nickname: admin.nickname } });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 

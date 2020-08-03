@@ -27,7 +27,7 @@ router.post('/', upload.single('image'), uploadLimits, async (req, res) => {
     const image = await axios.post(uploadUrl, uploadData, config);
     return res.send({ success: true, imgUrl: image.data.data.link });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 

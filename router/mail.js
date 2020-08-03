@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     });
     return res.send({ success: true, message: '發送成功' });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 

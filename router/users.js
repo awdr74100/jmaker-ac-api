@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     return res.send({ success: true, message: '加入成功' });
   } catch (error) {
     if (error.code === 11000) return res.send({ success: false, message: '重複加入' });
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -26,7 +26,7 @@ router.get('/:id/auth', async (req, res) => {
       user: { username: user.username, userid: user.userid },
     });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
       users,
     });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -55,7 +55,7 @@ router.get('/:userid', async (req, res) => {
       user,
     });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -66,7 +66,7 @@ router.delete('/:id', async (req, res) => {
     await User.findByIdAndDelete(id);
     return res.send({ success: true, message: '刪除成功' });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -86,7 +86,7 @@ router.patch('/:id', async (req, res) => {
     });
     return res.send({ success: true, message: '註冊成功' });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
@@ -100,7 +100,7 @@ router.patch('/:id/auth', async (req, res) => {
     });
     return res.send({ success: true, message: '調整成功' });
   } catch (error) {
-    return res.status(500).send({ success: false, message: '操作失敗，系統存在異常' });
+    return res.status(500).send({ success: false, message: error.message });
   }
 });
 
