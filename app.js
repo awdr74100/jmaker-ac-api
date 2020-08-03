@@ -63,7 +63,7 @@ db.once('open', () => console.log('連接成功'));
 app.use((err, req, res, next) => {
   if (err.code === 'credentials_required') return res.send({ success: false, message: '未帶有訪問令牌' });
   if (err.code === 'invalid_token') return res.send({ success: false, message: '無效的訪問令牌' });
-  return next();
+  return res.send({ success: false, message: err.message });
 });
 
 const port = process.env.PORT || 3000;
