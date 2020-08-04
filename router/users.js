@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../model/user');
 
-// 硬體 && 用戶加入
+// 用戶加入
 router.post('/', async (req, res) => {
   const { id } = req.body;
   try {
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// 硬體 && 權限檢查
+// 權限檢查
 router.get('/:id/auth', async (req, res) => {
   const { id } = req.params;
   try {
@@ -30,7 +30,7 @@ router.get('/:id/auth', async (req, res) => {
   }
 });
 
-// 前台 && 取得所有用戶
+// 取得所有用戶
 router.get('/', async (req, res) => {
   try {
     const users = await User.find();
@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 前台 && 取得指定用戶
+// 取得指定用戶
 router.get('/:userid', async (req, res) => {
   const { userid } = req.params;
   try {
@@ -59,7 +59,7 @@ router.get('/:userid', async (req, res) => {
   }
 });
 
-// 前台 && 刪除指定用戶
+// 刪除指定用戶
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -70,7 +70,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// 前台 && 實體用戶註冊
+// 實體用戶註冊
 router.patch('/:id', async (req, res) => {
   const { id } = req.params;
   const { username, userid } = req.body;
@@ -90,7 +90,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
-// 前台 && 調整訪問權限
+// 調整訪問權限
 router.patch('/:id/auth', async (req, res) => {
   const { id } = req.params;
   const { auth } = req.body;

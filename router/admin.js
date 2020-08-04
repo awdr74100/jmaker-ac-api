@@ -3,7 +3,7 @@ const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const Admin = require('../model/admin');
 
-// 前台 && 管理員註冊
+// 管理員註冊
 router.post('/signup', async (req, res) => {
   const { email, password, nickname } = req.body;
   try {
@@ -20,7 +20,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// 前台 && 管理員登入
+// 管理員登入
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// 前台 && 檢查是否持續登入
+// 檢查是否持續登入
 router.post('/check', (req, res) => {
   const exp = new Date(req.user.exp * 1000).getMinutes();
   const now = new Date().getMinutes();
@@ -63,7 +63,7 @@ router.post('/check', (req, res) => {
   return res.send({ success: true });
 });
 
-// 前台 && 管理員登出
+// 管理員登出
 router.post('/logout', (req, res) => {
   res.clearCookie('token', {
     sameSite: 'none',

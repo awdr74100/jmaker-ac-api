@@ -2,7 +2,7 @@ const router = require('express').Router();
 const axios = require('axios').default;
 const { upload, uploadLimits } = require('../middleware/uploadHandler');
 
-// 前台 && 上傳圖片
+// 圖片上傳
 router.post('/', upload.single('image'), uploadLimits, async (req, res) => {
   const uploadUrl = 'https://api.imgur.com/3/image';
   const uploadData = {

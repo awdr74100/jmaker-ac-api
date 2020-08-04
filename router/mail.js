@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
 
-// 前台 && 發送郵件
+// 發送郵件
 router.post('/', async (req, res) => {
   const { nickname, email, subject } = req.body;
   const { imgUrl, content } = req.body;
