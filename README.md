@@ -1,27 +1,8 @@
-# J-MAKER 實驗室門禁控制系統 API
+# J-MAKER 實驗室門禁管理系統 API
 
 ## 更新日誌
 
 - 2020/08/04：修復 Chrome 80+ 針對跨域 Cookie 的規則調整 (SameSite 必須從 Lax 改為 None 同時加上 Secure 屬性)
-
-## 設計說明
-
-解決硬體端傳統與資料庫整合上的困難，硬體端使用的 ESP32、ESP8266、Raspberry Pi 都只需要透過基本的 HTTP Request 即可完成與資料庫的溝通。
-
-- 第一道進出入自動門 ✔
-- 專題討論空間自動門 ✔
-- CNC 器具間權限控管
-- 3D 列印器材間權限控管
-
-## 系統架構
-
-1. 前端：[移至專案](https://github.com/awdr74100/jmaker-ac)
-2. 後端：Node.js + Express.js
-3. 資料庫：MongoDB + Mongoose (ODM)
-4. 圖片儲存：Imgur API
-5. 資料加密：Argon2
-6. 驗證機制：JWT + Cookie
-7. 部署：Vercel、MongoDB Atlas
 
 ## API：
 
