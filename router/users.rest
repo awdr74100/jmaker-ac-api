@@ -1,7 +1,7 @@
 @BASE_URL = http://localhost:3000/api/v2
 # @BASE_URL = https://jmaker-ac.vercel.app/api/v2
 
-### 硬體 && 加入用戶
+### 加入用戶
 POST {{BASE_URL}}/users
 Content-Type: application/json
 
@@ -9,19 +9,19 @@ Content-Type: application/json
   "id": "d9685f2e4d"
 }
 
-### 硬體 && 權限檢查
+### 權限檢查
 GET {{BASE_URL}}/users/001/auth
 
-### 前台 && 取得所有用戶
+### 取得所有用戶
 GET {{BASE_URL}}/users
 
-### 前台 && 取得指定用戶
+### 取得指定用戶
 GET {{BASE_URL}}/users/4A6G0067
 
-### 前台 && 刪除指定用戶
+### 刪除指定用戶
 DELETE {{BASE_URL}}/users/002
 
-### 前台 && 實體用戶註冊
+### 實體用戶註冊
 PATCH {{BASE_URL}}/users/002
 Content-Type: application/json
 
@@ -30,7 +30,7 @@ Content-Type: application/json
   "userid": "4A6G0067"
 }
 
-### 前台 && 調整訪問權限
+### 調整訪問權限
 PATCH {{BASE_URL}}/users/002/auth
 Content-Type: application/json
 

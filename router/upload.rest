@@ -1,5 +1,5 @@
 @BASE_URL = http://localhost:3000/api/v2
 # @BASE_URL = https://jmaker-ac.vercel.app/api/v2
 
-### 前台 && 上傳圖片
+### 圖片上傳
 POST {{BASE_URL}}/upload

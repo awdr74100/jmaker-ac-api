@@ -1,7 +1,7 @@
 @BASE_URL = http://localhost:3000/api/v2
 # @BASE_URL = https://jmaker-ac.vercel.app/api/v2
 
-### 前台 && 發送郵件
+### 發送郵件
 POST {{BASE_URL}}/mail
 Content-Type: application/json
 
