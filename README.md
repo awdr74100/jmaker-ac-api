@@ -1,5 +1,9 @@
 # J-MAKER 實驗室門禁管理系統 API
 
+## 版本號
+
+> 當前版本號為 v2
+
 ## 更新日誌
 
 - 2020/08/04：修復 Chrome 80+ 針對跨域 Cookie 的規則調整 (SameSite 必須從 Lax 改為 None 同時加上 Secure 屬性)
@@ -31,7 +35,7 @@
 ### 用戶加入
 
 ```plain
-[PATH]: /users
+[PATH]: /api/:version/users
 [方法]: POST
 [參數]:
   {
@@ -57,7 +61,7 @@
 ### 權限檢查
 
 ```plain
-[PATH]: /users/:id/auth
+[PATH]: /api/:version/users/:id/auth
 [方法]: GET
 [說明]: @id = RFID
 [成功回應]:
@@ -93,7 +97,7 @@
 ### 取得所有用戶
 
 ```plain
-[PATH]: /users
+[PATH]: /api/:version/users
 [方法]: GET
 [成功回應]:
   {
@@ -119,7 +123,7 @@
 ### 取得指定用戶
 
 ```plain
-[PATH]: /users/:userid
+[PATH]: /api/:version/users/:userid
 [方法]: GET
 [說明]: @userid = Student ID
 [成功回應]:
@@ -144,7 +148,7 @@
 ### 刪除指定用戶
 
 ```plain
-[PATH]: /users/:id
+[PATH]: /api/:version/users/:id
 [方法]: DELETE
 [說明]: @id = RFID
 [成功回應]:
@@ -162,7 +166,7 @@
 ### 實體用戶註冊
 
 ```plain
-[PATH]: /users/:id
+[PATH]: /api/:version/users/:id
 [方法]: PATCH
 [說明]: @id = RFID
 [參數]:
@@ -190,7 +194,7 @@
 ### 調整訪問權限
 
 ```plain
-[PATH]: /users/:id/auth
+[PATH]: /api/:version/users/:id/auth
 [方法]: PATCH
 [說明]: @id = RFID
 [參數]:
@@ -245,7 +249,7 @@ return new Promise((resolve) => {
 ```
 
 ```plain
-[PATH]: /upload
+[PATH]: /api/:version/upload
 [方法]: POST
 [成功回應]:
   {
@@ -272,7 +276,7 @@ return new Promise((resolve) => {
 ### 發送郵件
 
 ```plain
-[PATH]: /mail
+[PATH]: /api/:version/mail
 [方法]: POST
 [參數]:
   {
@@ -299,7 +303,7 @@ return new Promise((resolve) => {
 > 目前暫不開放，只允許系統管理員操作
 
 ```plain
-[PATH]: /admin/signup
+[PATH]: /api/:version/admin/signup
 [方法]: POST
 [參數]:
   {
@@ -339,7 +343,7 @@ axios.defaults.withCredentials = true;
 ```
 
 ```plain
-[PATH]: /admin/login
+[PATH]: /api/:version/admin/login
 [方法]: POST
 [參數]:
   {
@@ -369,7 +373,7 @@ axios.defaults.withCredentials = true;
 ### 檢查是否持續登入
 
 ```plain
-[PATH]: /admin/check
+[PATH]: /api/:version/admin/check
 [方法]: POST
 [成功回應]:
   {
@@ -389,7 +393,7 @@ axios.defaults.withCredentials = true;
 ### 管理員登出
 
 ```plain
-[PATH]: /admin/logout
+[PATH]: /api/:version/admin/logout
 [方法]: POST
 [成功回應]:
   {
