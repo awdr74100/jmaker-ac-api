@@ -272,7 +272,7 @@ return new Promise((resolve) => {
 ### 發送郵件
 
 ```plain
-[PATH]: /admin/signup
+[PATH]: /mail
 [方法]: POST
 [參數]:
   {
@@ -285,12 +285,7 @@ return new Promise((resolve) => {
 [成功回應]:
   {
     "success": true,
-    "message": "註冊成功"
-  }
-[失敗回應]:
-  {
-    "success": false,
-    "message": "重複註冊"
+    "message": "發送成功"
   }
 [發生異常]:
   {
