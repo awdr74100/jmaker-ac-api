@@ -1,8 +1,8 @@
-@BASE_URL = http://localhost:3000/api/v2
-# @BASE_URL = https://jmaker-ac.vercel.app/api/v2
+@BASE_URL = http://localhost:3000
+# @BASE_URL = https://jmaker-ac.vercel.app
 
 ### 加入用戶
-POST {{BASE_URL}}/users
+POST {{BASE_URL}}/api/admin/users
 Content-Type: application/json
 
 {
@@ -10,19 +10,19 @@ Content-Type: application/json
 }
 
 ### 權限檢查
-GET {{BASE_URL}}/users/001/auth
+GET {{BASE_URL}}/api/admin/users/001/auth
 
 ### 取得所有用戶
-GET {{BASE_URL}}/users
+GET {{BASE_URL}}/api/admin/users
 
 ### 取得指定用戶
-GET {{BASE_URL}}/users/4A6G0067
+GET {{BASE_URL}}/api/admin/users/4A6G0067
 
 ### 刪除指定用戶
-DELETE {{BASE_URL}}/users/002
+DELETE {{BASE_URL}}/api/admin/users/002
 
 ### 實體用戶註冊
-PATCH {{BASE_URL}}/users/002
+PATCH {{BASE_URL}}/api/admin/users/002
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ### 調整訪問權限
-PATCH {{BASE_URL}}/users/002/auth
+PATCH {{BASE_URL}}/api/admin/users/002/auth
 Content-Type: application/json
 
 {

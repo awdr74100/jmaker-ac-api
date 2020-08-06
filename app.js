@@ -23,9 +23,9 @@ const expressJwtOptions = {
 const expressJwtUnless = {
   path: [
     // /^\/*/,
-    { url: /^\/api\/v2\/users$/, methods: ['POST'] },
-    { url: /^\/api\/v2\/users\/([^/]*)\/auth$/, methods: ['GET'] },
-    { url: /^\/api\/v2\/admin\/login$/, methods: ['POST'] },
+    { url: /^\/api\/admin\/users$/, methods: ['POST'] },
+    { url: /^\/api\/admin\/users\/([^/]*)\/auth$/, methods: ['GET'] },
+    { url: /^\/api\/admin\/login$/, methods: ['POST'] },
   ],
 };
 
@@ -36,16 +36,15 @@ app.use(cookieParser());
 app.use(expressJwt(expressJwtOptions).unless(expressJwtUnless));
 
 // import Router
-const usersRouter = require('./router/users');
-const adminRouter = require('./router/admin');
-const uploadRouter = require('./router/upload');
-const mailRouter = require('./router/mail');
+const admin = require('./router/admin/index');
+const adminUsers = require('./router/admin/users');
+const adminUpload = require('./router/admin/upload');
+const adminMail = require('./router/admin/mail');
 
-const root = '/api/v2';
-app.use(`${root}/users`, usersRouter);
-app.use(`${root}/admin`, adminRouter);
-app.use(`${root}/upload`, uploadRouter);
-app.use(`${root}/mail`, mailRouter);
+app.use('/api/admin', admin);
+app.use('/api/admin/users', adminUsers);
+app.use('/api/admin/upload', adminUpload);
+app.use('/api/admin/mail', adminMail);
 
 // mongoose connection
 mongoose.connect(process.env.MONGODB_URL, {

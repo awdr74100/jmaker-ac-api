@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
-const Admin = require('../model/admin');
+const Admin = require('../../model/admin');
 
 // 管理員註冊
 router.post('/signup', async (req, res) => {
@@ -35,8 +35,8 @@ router.post('/login', async (req, res) => {
       .cookie('token', token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 15, // 15min
-        sameSite: 'none',
-        secure: true,
+        // sameSite: 'none',
+        // secure: true,
       })
       .send({ success: true, admin: { email: admin.email, nickname: admin.nickname } });
   } catch (error) {
@@ -55,8 +55,8 @@ router.post('/check', (req, res) => {
       .cookie('token', token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 15, // 15min
-        sameSite: 'none',
-        secure: true,
+        // sameSite: 'none',
+        // secure: true,
       })
       .send({ success: true });
   }
@@ -66,8 +66,8 @@ router.post('/check', (req, res) => {
 // 管理員登出
 router.post('/logout', (req, res) => {
   res.clearCookie('token', {
-    sameSite: 'none',
-    secure: true,
+    // sameSite: 'none',
+    // secure: true,
   });
   return res.send({ success: true, message: '已登出' });
 });

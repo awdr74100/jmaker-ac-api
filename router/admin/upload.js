@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const axios = require('axios').default;
-const { upload, uploadLimits } = require('../middleware/uploadHandler');
+const { upload, uploadLimits } = require('../../middleware/uploadHandler');
 
 // 圖片上傳
 router.post('/', upload.single('image'), uploadLimits, async (req, res) => {

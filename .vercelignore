@@ -1,4 +1,4 @@
-/router/*.rest
+/router/**/*.rest
 .editorconfig
 .prettierrc
 *.md

@@ -1,0 +1,27 @@
+@BASE_URL = http://localhost:3000
+# @BASE_URL = https://jmaker-ac.vercel.app
+
+### 管理員註冊
+POST {{BASE_URL}}/api/admin/signup
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": "",
+  "nickname": ""
+}
+
+### 管理員登入
+POST {{BASE_URL}}/api/admin/login
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
+### 檢查是否持續登入
+POST {{BASE_URL}}/api/admin/check
+
+### 管理員登出
+POST {{BASE_URL}}/api/admin/logout
