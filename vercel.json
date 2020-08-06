@@ -3,23 +3,23 @@
   "builds": [{ "src": "./app.js", "use": "@now/node" }],
   "routes": [
     {
-      "src": "/api/v2/users",
+      "src": "/api/admin/users",
       "dest": "/app.js"
     },
     {
-      "src": "/api/v2/users/(.*)",
+      "src": "/api/admin/users/(.*)",
       "dest": "/app.js"
     },
     {
-      "src": "/api/v2/admin/(.*)",
+      "src": "/api/admin/(.*)",
       "dest": "/app.js"
     },
     {
-      "src": "/api/v2/mail",
+      "src": "/api/admin/mail",
       "dest": "/app.js"
     },
     {
-      "src": "/api/v2/upload",
+      "src": "/api/admin/upload",
       "dest": "/app.js"
     }
   ]
