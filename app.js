@@ -25,7 +25,7 @@ const expressJwtUnless = {
     // /^\/*/,
     { url: /^\/api\/admin\/users$/, methods: ['POST'] },
     { url: /^\/api\/admin\/users\/([^/]*)\/auth$/, methods: ['GET'] },
-    { url: /^\/api\/admin\/login$/, methods: ['POST'] },
+    { url: /^\/api\/admin\/signin$/, methods: ['POST'] },
   ],
 };
 

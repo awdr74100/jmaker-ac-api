@@ -21,7 +21,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // 管理員登入
-router.post('/login', async (req, res) => {
+router.post('/signin', async (req, res) => {
   const { email, password } = req.body;
   try {
     const admin = await Admin.findOne({
@@ -64,7 +64,7 @@ router.post('/check', (req, res) => {
 });
 
 // 管理員登出
-router.post('/logout', (req, res) => {
+router.post('/signout', (req, res) => {
   res.clearCookie('token', {
     sameSite: 'none',
     secure: true,

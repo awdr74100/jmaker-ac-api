@@ -339,7 +339,7 @@ axios.defaults.withCredentials = true;
 ```
 
 ```plain
-[PATH]: /api/admin/login
+[PATH]: /api/admin/signin
 [方法]: POST
 [參數]:
   {
@@ -395,7 +395,7 @@ axios.defaults.withCredentials = true;
 ### 管理員登出
 
 ```plain
-[PATH]: /api/admin/logout
+[PATH]: /api/admin/signout
 [方法]: POST
 [成功回應]:
   {

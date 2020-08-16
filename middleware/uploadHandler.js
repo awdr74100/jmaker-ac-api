@@ -3,7 +3,7 @@ const multer = require('multer');
 const upload = multer({
   storage: multer.memoryStorage(),
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) return cb(new Error('Type error'), false);
+    if (!file.originalname.match(/\.(jpe?g|png|gif)$/)) return cb(new Error('Type error'), false);
     return cb(null, true);
   },
   limits: { fileSize: 1024 * 1024 }, // 1MB (byte)

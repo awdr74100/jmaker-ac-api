@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### 管理員登入
-POST {{BASE_URL}}/api/admin/login
+POST {{BASE_URL}}/api/admin/signin
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 POST {{BASE_URL}}/api/admin/check
 
 ### 管理員登出
-POST {{BASE_URL}}/api/admin/logout
+POST {{BASE_URL}}/api/admin/signout

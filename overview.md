@@ -62,7 +62,7 @@
 - (200):false - 重複註冊
 - (500):false - error.message
 
-11. 管理員登入 => POST /api/admin/login
+11. 管理員登入 => POST /api/admin/signin
 
 - (200):true - { 管理員資料 }
 - (200):false - 帳號或密碼錯誤
@@ -74,6 +74,6 @@
 - (200):false - 未帶有訪問令牌
 - (200):false - 無效的訪問令牌
 
-13. 管理員登出 => POST /api/admin/logout
+13. 管理員登出 => POST /api/admin/signout
 
 - (200):true - 已登出

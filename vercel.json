@@ -3,23 +3,7 @@
   "builds": [{ "src": "./app.js", "use": "@now/node" }],
   "routes": [
     {
-      "src": "/api/admin/users",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/api/admin/users/(.*)",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/api/admin/(.*)",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/api/admin/mail",
-      "dest": "/app.js"
-    },
-    {
-      "src": "/api/admin/upload",
+      "src": "/api/.*",
       "dest": "/app.js"
     }
   ]
