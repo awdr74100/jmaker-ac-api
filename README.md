@@ -4,7 +4,45 @@
 
 - 2020/08/04：修復 Chrome 80+ 針對跨域 Cookie 的規則調整 (SameSite 必須從 Lax 改為 None 同時加上 Secure 屬性)
 
-## API：
+## 環境建置
+
+- [Node.js](https://nodejs.org/en/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [Imgur API](https://apidocs.imgur.com/)
+
+## 環境變數
+
+```plain
+MONGODB_URL =
+JWT_SECRET =
+IMGUR_CLIENT_ID =
+IMGUR_CLIENT_SECRET =
+IMGUR_REFRESH_TOKEN =
+GOOGLE_EMAIL =
+GOOGLE_PASSWORD =
+```
+
+## 安裝流程
+
+Clone 專案
+
+```bash
+git clone git@github.com:awdr74100/jmaker-ac-api.git
+```
+
+安裝 npm 套件
+
+```bash
+npm install
+```
+
+啟動 server
+
+```bash
+npm run start
+```
+
+## API 文件
 
 1. 硬體端 (免驗證)
 
