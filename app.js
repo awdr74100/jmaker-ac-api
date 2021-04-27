@@ -1,10 +1,10 @@
-require('dotenv').config();
-const app = require('express')();
+const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressJwt = require('express-jwt');
 const mongoose = require('mongoose');
+
+const app = express();
 
 const corsOptions = {
   credentials: true,
@@ -31,8 +31,8 @@ const expressJwtUnless = {
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(expressJwt(expressJwtOptions).unless(expressJwtUnless));
 
@@ -48,16 +48,19 @@ app.use('/api/admin/upload', adminUpload);
 app.use('/api/admin/mail', adminMail);
 
 // mongoose connection
-mongoose.connect(process.env.MONGODB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
+mongoose
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
+  .then(() => console.log('連接成功'))
+  .catch((err) => console.log('MongoDB Error: ', err));
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log('連接成功'));
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => console.log('連接成功'));
 
 // error handler
 app.use((err, req, res, next) => {
